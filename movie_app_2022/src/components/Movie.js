@@ -1,10 +1,22 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import './Movie.css';
+// detail로 이동하기위해
+import { Link } from 'react-router-dom'
 // 개별 Movie 데이터
-function Movie({ title, year, summary, poster, genres}) {
+function Movie({ id, title, year, summary, poster, genres}) {
   return (
     <div className='movie'>
+      <Link to ={{
+        pathname: `/movie-detail/${id}`,
+        state: {
+            year: year, 
+            title: title, 
+            summary: summary, 
+            poster: poster, 
+            genres: genres},
+      }}
+      >
       <img src={poster} alt={title} title={title}/>
       <div className='movie__data'>
         <h3 className='movie__title'>{title}</h3>
@@ -19,7 +31,7 @@ function Movie({ title, year, summary, poster, genres}) {
           })}
         </ul>
       </div>
-
+      </Link>
       
     </div>
   )
